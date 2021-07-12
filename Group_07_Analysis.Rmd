@@ -1,0 +1,68 @@
+---
+title: "Group_07_Analysis"
+author: "Group 7"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: yes
+  html_document:
+    df_print: paged
+fig_caption: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, eval = TRUE, warning = FALSE, message = FALSE, comment = NA)
+```
+
+```{r libraries}
+library(tidyverse)
+library(moderndive)
+library(skimr)
+library(kableExtra)
+library(gridExtra)
+library(broom)
+```
+
+```{r data}
+film <- read.csv("dataset7.csv")
+```
+
+# Introduction {#sec:Intro}
+
+
+
+
+# Exploratory Data Analysis {#sec:EDA}
+
+```{r summary}
+my_skim <- skim_with(base = sfl(n = length))
+film%>%
+  select(-c(1,6)) %>% 
+  my_skim() %>% 
+  transmute(Variable=skim_variable, Mean=numeric.mean, SD=numeric.sd,
+            Min=numeric.p0, Q1=numeric.p25, Median=numeric.p50, Q3=numeric.p75,Max=numeric.p100,
+            IQR = numeric.p75-numeric.p50) %>% 
+  kable(caption = '\\label{tab:summary}Summary statistics of variables in the data set.' ,
+        booktabs = TRUE, linesep = "", digits = 3) %>%
+  kable_styling(font_size = 10, latex_options = "hold_position")
+```
+
+```{r}
+table(film$genre)
+```
+
+```{r boxplot ,out.width='68%', fig.pos="H",fig.align='center', fig.cap="\\label{fig:boxplot}  IMDB rating by genre"}
+ggplot(film, aes(genre,rating))+
+  geom_boxplot(fill="SpringGreen3")+
+  labs(x="Genre",y=" IMDB rating")+
+  theme_light()
+```
+
+```{r}
+fiml7 <- subset(film,rating>=7)
+```
+
+# Formal Data Analysis {#sec:FDA}
+
+
+# Conclusion and further task {#sec:Conclude}
