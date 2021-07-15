@@ -59,7 +59,7 @@ ggplot(film, aes(genre,rating))+
 ```
 
 ```{r}
-fiml7 <- subset(film,rating>=7)
+film7 <- subset(film,rating>=7)
 ```
 
 # Formal Data Analysis {#sec:FDA}
