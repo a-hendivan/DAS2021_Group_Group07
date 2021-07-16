@@ -29,33 +29,93 @@ film <- read.csv("dataset7.csv")
 film <- film %>% 
   mutate(Rate = ifelse(film$rating >7 , ">7" ,"<=7"))%>%
   mutate_at(vars(Rate ) , funs(factor))
+# Find NA observations 
+# There are 92 missing data 
+
+film %>% 
+   select(rating) %>%
+  summary()
+
+ggplot(film, aes(x=rating)) + 
+   geom_histogram(col="white",fill="wheat4")+
+   ggtitle("Density Of Rating")+
+   labs(y="frequency")+
+   scale_x_continuous(name="Rating", limits=c(0, 10),n.breaks = 10)+
+   theme_light()
+
+```
+
+
+```{r}
   
+# Genre Variable #
+#================#
 
-# Check variability of 
-# Genre is categorical 
-# plot of rating agians genre 
-ggplot ( film , aes(x= genre, y= ..count.., group= Rate,fill=Success)) + 
-  geom_bar(col ="white" , position="dodge",stat = "count") + 
-  scale_fill_manual(values=c("blue4", "lightblue"))+
-  theme_light()
+# Contingency Table 
 
-# plot against continues budget variable 
+film %>% 
+     tabyl(Rate, genre) %>% 
+     adorn_percentages() %>% 
+     adorn_pct_formatting() %>% 
+     adorn_ns() 
+
+ ggplot ( film , aes(x= Rate, y= ..prop.., group= genre,fill=genre)) + 
+   geom_bar(col ="white" , position="dodge",stat = "count") + 
+   scale_fill_descrete()+
+   labs(x="Rate" , "y=Proportion")+
+   theme_light()
+```
+ 
+ 
+```{r}
+# Budget # 
+#=========#
 ggplot( film , aes( x= Rate , y= budget,fill=Rate )) + 
-  geom_boxplot() +
-  scale_fill_manual(values=c("blue4", "lightblue"))+
-  labs(x="Ratings" , y ="Budget (in $10^3's")+
-  theme_light()
+   geom_boxplot() +
+   scale_fill_manual(values=c("blue4", "lightblue"))+
+   labs(x="Ratings" , y =paste("Budget (in $ 10 ^{3} 's"))+
+   theme_light()
 
-# plot against conitinuous length variable 
-ggplot(film , aes(x= Rate , y= length, fill = Rate)) + 
-  geom_boxplot() +
-  scale_fill_manual(values=c("blue4", "lightblue"))+
-  labs(x="Ratings" , y ="Length (in minutes)")+
-  theme_light()
+
+```
+
+```{r}
+# Length # 
+#==========# 
+
+summary(film$length)  # There are 92 missing data 
+
+dim(na.omit(film[  film$length >100 & film$Rate==">7",] ))[1]
+
+ggplot(film , aes(x= Rate , y= log(length), fill = Rate)) + 
+   geom_boxplot() +
+   scale_fill_manual(values=c("blue4", "lightblue"))+
+   labs(x="Ratings" , y ="Length (in minutes)")+
+   theme_light()
 
 ggplot( film , aes(x = Rate , y = year )) + 
   geom_boxplot()
   
+
+
+
+```
+```{r}
+
+# Positive Votes # 
+#=================#
+ ggplot(film , aes(y= log(votes) , x= Rate , fill=Rate )) + 
+   geom_boxplot() + 
+   scale_fill_discrete()+
+   labs(x="Rate" , y = "Number of Positive Votes")+
+   theme_light()
+```
+
+```{r model}
+# Now genre is categorical while lenght is numerical 
+ model <- glm( Rate ~ genre + length , data = film , 
+               family = binomial(link = "logit"))
+ summary(model)
 
 ```
 
