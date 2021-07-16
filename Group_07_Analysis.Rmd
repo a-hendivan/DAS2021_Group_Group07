@@ -24,7 +24,39 @@ library(broom)
 ```
 
 ```{r data}
-film <- read.csv("dataset7.csv")
+film <- read.csv("dataset7.csv") 
+# Split output Y into 2 groups >7 and <=7  
+film <- film %>% 
+  mutate(Rate = ifelse(film$rating >7 , ">7" ,"<=7"))%>%
+  mutate_at(vars(Rate ) , funs(factor))
+  
+
+# Check variability of 
+# Genre is categorical 
+# plot of rating agians genre 
+ggplot ( film , aes(x= genre, y= ..count.., group= Rate,fill=Success)) + 
+  geom_bar(col ="white" , position="dodge",stat = "count") + 
+  scale_fill_manual(values=c("blue4", "lightblue"))+
+  theme_light()
+
+# plot against continues budget variable 
+ggplot( film , aes( x= Rate , y= budget,fill=Rate )) + 
+  geom_boxplot() +
+  scale_fill_manual(values=c("blue4", "lightblue"))+
+  labs(x="Ratings" , y ="Budget (in $10^3's")+
+  theme_light()
+
+# plot against conitinuous length variable 
+ggplot(film , aes(x= Rate , y= length, fill = Rate)) + 
+  geom_boxplot() +
+  scale_fill_manual(values=c("blue4", "lightblue"))+
+  labs(x="Ratings" , y ="Length (in minutes)")+
+  theme_light()
+
+ggplot( film , aes(x = Rate , y = year )) + 
+  geom_boxplot()
+  
+
 ```
 
 # Introduction {#sec:Intro}
@@ -59,7 +91,7 @@ ggplot(film, aes(genre,rating))+
 ```
 
 ```{r}
-fiml7 <- subset(film,rating>=7)
+film7 <- subset(film,rating>=7)
 ```
 
 # Formal Data Analysis {#sec:FDA}
