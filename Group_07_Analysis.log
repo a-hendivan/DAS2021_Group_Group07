@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.8)  12 JUL 2021 07:44
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.15)  17 JUL 2021 09:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Group_07_Analysis.tex
 (./Group_07_Analysis.tex
 LaTeX2e <2021-06-01> patch level 1
-L3 programming layer <2021-06-18>
+L3 programming layer <2021-07-12>
 (c:/Users/Andivan Ahmad/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/artic
 le.cls
 Document Class: article 2021/02/12 v1.4n Standard LaTeX document class
@@ -141,11 +141,11 @@ Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 th/unicode-math.sty
 (c:/Users/Andivan Ahmad/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/e
 xpl3.sty
-Package: expl3 2021-06-18 L3 programming layer (loader) 
+Package: expl3 2021-07-12 L3 programming layer (loader) 
 
 (c:/Users/Andivan Ahmad/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/
 l3backend-xetex.def
-File: l3backend-xetex.def 2021-05-07 L3 backend support: XeTeX
+File: l3backend-xetex.def 2021-07-12 L3 backend support: XeTeX
 (|extractbb --version)
 \c__kernel_sys_dvipdfmx_version_int=\count198
 \l__color_backend_stack_int=\count199
@@ -615,11 +615,8 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen198
 \c@nlinenum=\count320
 \TeXr@lab=\toks32
-) (./Group_07_Analysis.aux
-
-LaTeX Warning: Label `tab:summary' multiply defined.
-
 )
+No file Group_07_Analysis.aux.
 \openout1 = `Group_07_Analysis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
@@ -927,9 +924,11 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 85.
 LaTeX Info: Redefining \pageref on input line 85.
 LaTeX Info: Redefining \nameref on input line 85.
-(./Group_07_Analysis.out) (./Group_07_Analysis.out)
 \@outlinefile=\write3
 \openout3 = `Group_07_Analysis.out'.
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -990,41 +989,96 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 7.99915pt on input line 87.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.99936pt on input line 87.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 99.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 99.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 99.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 99.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 99.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 99.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 99.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 99.
-File: Group_07_Analysis_files/figure-latex/boxplot -1.pdf Graphic file (type pd
-f)
-<use Group_07_Analysis_files/figure-latex/boxplot -1.pdf>
+File: Group_07_Analysis_files/figure-latex/data-1.pdf Graphic file (type pdf)
+<use Group_07_Analysis_files/figure-latex/data-1.pdf>
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (
+type pdf)
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-1-1.pdf>
 [1
 
-] [2] (./Group_07_Analysis.aux)
+]
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-1-2.pdf Graphic file (
+type pdf)
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-1-2.pdf>
+[2]
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (
+type pdf)
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-2-1.pdf>
 
-LaTeX Warning: There were multiply-defined labels.
+Underfull \hbox (badness 10000) in paragraph at lines 121--125
+[][]
+ []
 
-Package rerunfilecheck Info: File `Group_07_Analysis.out' has not changed.
-(rerunfilecheck)             Checksum: 9B9852384C2B7335E0956223C6D34EB7;613.
- ) 
+[3]
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (
+type pdf)
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-3-1.pdf>
+[4]
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (
+type pdf)
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-4-1.pdf>
+[5]
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (
+type pdf)
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-5-1.pdf>
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-5-2.pdf Graphic file (
+type pdf)
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-5-2.pdf>
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-5-3.pdf Graphic file (
+type pdf)
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-5-3.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 149--152
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 149--152
+[]
+ []
+
+[6] [7] [8]
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (
+type pdf)
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-6-1.pdf>
+[9]
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (
+type pdf)
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-7-1.pdf>
+[10]
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (
+type pdf)
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-8-1.pdf>
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-8-2.pdf Graphic file (
+type pdf)
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-8-2.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--161
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--161
+[]
+ []
+
+[11] [12] [13]
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.205 
+       
 Here is how much of TeX's memory you used:
- 17023 strings out of 478451
- 305733 string characters out of 5856460
- 779225 words of memory out of 5000000
- 37119 multiletter control sequences out of 15000+600000
- 407459 words of font info for 63 fonts, out of 8000000 for 9000
+ 17076 strings out of 478476
+ 310363 string characters out of 5856960
+ 771045 words of memory out of 5000000
+ 37154 multiletter control sequences out of 15000+600000
+ 405867 words of font info for 52 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 87i,9n,120p,311b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 87i,7n,120p,311b,467s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Group_07_Analysis.pdf (2 pages).
+Output written on Group_07_Analysis.pdf (13 pages).

@@ -21,6 +21,9 @@ library(skimr)
 library(kableExtra)
 library(gridExtra)
 library(broom)
+library(janitor)
+library(ggplot2)
+library(GGally)
 ```
 
 ```{r data}
@@ -53,18 +56,57 @@ ggplot(film, aes(x=rating)) +
 
 # Contingency Table 
 
+
 film %>% 
      tabyl(Rate, genre) %>% 
      adorn_percentages() %>% 
      adorn_pct_formatting() %>% 
      adorn_ns() 
 
- ggplot ( film , aes(x= Rate, y= ..prop.., group= genre,fill=genre)) + 
+# check varaibility 
+ggplot(film , aes(x=genre)) + 
+   geom_bar(col= "white",fill="SkyBlue3") + 
+   geom_text(aes(label=..count..),stat="count", vjust=1.6, color="white", size=3.5)+
+   theme_light()
+# also given the table 
+film %>% 
+   select(genre) %>% 
+   table()
+
+     # Action   Animation      Comedy Documentary       Drama     Romance       Short 
+     #    698         165         582         136         684          16         106 
+
+ggplot ( film , aes(x= Rate, y= ..prop.., group= genre,fill=genre)) + 
    geom_bar(col ="white" , position="dodge",stat = "count") + 
-   scale_fill_descrete()+
+   scale_fill_discrete()+
    labs(x="Rate" , "y=Proportion")+
    theme_light()
+ 
 ```
+ 
+```{r}
+  ggplot(film, aes(x = rating)) +
+    geom_density(aes(color = genre)) +
+    theme_light()
+```
+From this density gragh we can see that Short,  Documentary,Comedy and Animation films are more likely to get rates over 7.5 compared to rates 
+lower than 7 ( 5 to be exact )
+
+We notice that the majority of films are within one of the 3 most dominant categories 
+Action , Comedy and Drama .
+On the opposite Animation Documentary and Short films have relatively close frequencies . 
+And Romance films are comparatively very rare among our list of films ( only 16 films where Romantic among all 2387)
+
+```{r} 
+# Romance films 
+ggplot(film[film$genre=="Romance",] , aes(x=rating)) +
+   geom_bar(fill="RosyBrown3")+
+   labs(title="Rating of Romance films")+
+   theme_light()
+```
+
+Given the barchart we notice that in our datasel all Romance films have ratings below 7. 
+This might indicate that Romance is not a strong explanation a
  
  
 ```{r}
@@ -85,7 +127,14 @@ ggplot( film , aes( x= Rate , y= budget,fill=Rate )) +
 
 summary(film$length)  # There are 92 missing data 
 
+# Comparing the 3rd Quartile and Maximum value ( 100, #399 respectively ) we see that length has many outliers
+
 dim(na.omit(film[  film$length >100 & film$Rate==">7",] ))[1]
+
+# Check density of length 
+ggplot(film , aes(x=length)) + 
+   geom_bar()+
+   theme_light()
 
 ggplot(film , aes(x= Rate , y= log(length), fill = Rate)) + 
    geom_boxplot() +
@@ -100,6 +149,7 @@ ggplot( film , aes(x = Rate , y = year )) +
 
 
 ```
+
 ```{r}
 
 # Positive Votes # 
@@ -111,15 +161,61 @@ ggplot( film , aes(x = Rate , y = year )) +
    theme_light()
 ```
 
+```{r}
+    # Year # 
+#=================#
+ggplot(film , aes(x = (year) , group= Rate , fill=Rate)) + 
+   geom_bar()
+
+
+```
+
+```{r}
+# Correlation between the explanatory variables 
+ggplot(film , aes(x=genre , y=length )) + 
+   geom_boxplot(fill="HotPink3")+
+      theme_light()
+
+
+corr <- data.frame(lapply(film[,-c(1,6)], as.integer))
+corr <- corr %>% 
+   mutate_all(scale)
+# Plot the graphg
+library(GGally)
+ggcorr(corr,
+    method = c("pairwise", "spearman"),
+    nbreaks = 6,
+    hjust = 0.8,
+    label = TRUE,
+    label_size = 3,
+    color = "grey50")
+``` 
+We see in general films' duration are roughly in same range except Animation and Short films. Both have comperatively smaller lenth 
+
 ```{r model}
-# Now genre is categorical while lenght is numerical 
+
+# Now genre is categorical while length is numerical 
  model <- glm( Rate ~ genre + length , data = film , 
                family = binomial(link = "logit"))
  summary(model)
 
 ```
 
+
 # Introduction {#sec:Intro}
+IMDb is a platform that provides information , ratings and reviews on films, movies and many other streaming content. 
+Our group was given a dataset taken from this databese, which has records of 2387 films released from  ` r min(film$year) ` to `r max(film$year)`
+Each film has a unique identefecation number (id) and some other measurments related to it. Those are : 
+\begin {itemize} 
+\item $ Year_i $   : the year the film was released at cinemas 
+\item $ Length_i $ : duration of film in minutes 
+\item $ Budget_i$  : Budget for film production in$ \$ 10^ 5  $'s
+\item $ Vote_i $   : Number of positive votes
+\item $ Genre_i $  : Genre of film
+\item $ Rating_i $ : IMDb rating from 1 to 10 
+
+\end {itemiza}
+
 
 
 
@@ -150,9 +246,6 @@ ggplot(film, aes(genre,rating))+
   theme_light()
 ```
 
-```{r}
-film7 <- subset(film,rating>=7)
-```
 
 # Formal Data Analysis {#sec:FDA}
 
