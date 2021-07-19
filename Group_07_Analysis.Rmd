@@ -146,6 +146,7 @@ ggplot( film , aes(x = Rate , y = year )) +
   geom_boxplot()
   
 
+<<<<<<< Updated upstream
 
 
 ```
@@ -202,6 +203,82 @@ We see in general films' duration are roughly in same range except Animation and
 ```
 
 
+=======
+<<<<<<< Updated upstream
+```
+
+=======
+
+
+```
+
+```{r}
+
+# Positive Votes # 
+#=================#
+ ggplot(film , aes(y= log(votes) , x= Rate , fill=Rate )) + 
+   geom_boxplot() + 
+   scale_fill_discrete()+
+   labs(x="Rate" , y = "Number of Positive Votes")+
+   theme_light()
+```
+
+```{r}
+    # Year # 
+#=================#
+ggplot(film , aes(x = (year) , group= Rate , fill=Rate)) + 
+   geom_bar()
+
+
+```
+
+```{r}
+# Correlation between the explanatory variables 
+ggplot(film , aes(x=genre , y=length )) + 
+   geom_boxplot(fill="HotPink3")+
+      theme_light()
+
+
+corr <- data.frame(lapply(film[,-c(1,6)], as.integer))
+corr <- corr %>% 
+   mutate_all(scale)
+# Plot the graphg
+library(GGally)
+ggcorr(corr,
+    method = c("pairwise", "spearman"),
+    nbreaks = 6,
+    hjust = 0.8,
+    label = TRUE,
+    label_size = 3,
+    color = "grey50")
+``` 
+We see in general films' duration are roughly in same range except Animation and Short films. Both have comperatively smaller lenth 
+
+```{r model}
+# Now genre is categorical while length is numerical 
+ model <- glm( Rate ~ genre + length , data = film , 
+               family = binomial(link = "logit"))
+ summary(model)
+```
+
+```{r fullmodel}
+str(film)
+modelfull <- glm( Rate ~ genre + length + year + budget + votes, data = film , 
+               family = binomial(link = "logit"))
+summary(modelfull)
+
+```
+
+```{r 3model}
+str(film)
+model3 <- glm( Rate ~ genre + length + budget, data = film , 
+               family = binomial(link = "logit"))
+summary(model3)
+
+```
+
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 # Introduction {#sec:Intro}
 IMDb is a platform that provides information , ratings and reviews on films, movies and many other streaming content. 
 Our group was given a dataset taken from this databese, which has records of 2387 films released from  ` r min(film$year) ` to `r max(film$year)`
