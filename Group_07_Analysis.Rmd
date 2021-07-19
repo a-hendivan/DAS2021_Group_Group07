@@ -27,6 +27,7 @@ library(GGally)
 library(sjPlot)
 ```
 
+
 ```{r data}
 film <- read.csv("dataset7.csv") 
 # Split output Y into 2 groups >7 and <=7  
@@ -35,266 +36,9 @@ film <- film %>%
   mutate_at(vars(Rate ) , funs(factor))
 # Find NA observations 
 # There are 92 missing data 
-
-film %>% 
-   select(rating) %>%
-  summary()
-
-ggplot(film, aes(x=rating)) + 
-   geom_histogram(col="white",fill="wheat4")+
-   ggtitle("Density Of Rating")+
-   labs(y="frequency")+
-   scale_x_continuous(name="Rating", limits=c(0, 10),n.breaks = 10)+
-   theme_light()
-
 ```
-
-
-```{r}
-  
-# Genre Variable #
-#================#
-
-# Contingency Table 
-
-
-film %>% 
-     tabyl(Rate, genre) %>% 
-     adorn_percentages() %>% 
-     adorn_pct_formatting() %>% 
-     adorn_ns() 
-
-# check varaibility 
-ggplot(film , aes(x=genre)) + 
-   geom_bar(col= "white",fill="SkyBlue3") + 
-   geom_text(aes(label=..count..),stat="count", vjust=1.6, color="white", size=3.5)+
-   theme_light()
-# also given the table 
-film %>% 
-   select(genre) %>% 
-   table()
-
-     # Action   Animation      Comedy Documentary       Drama     Romance       Short 
-     #    698         165         582         136         684          16         106 
-
-ggplot ( film , aes(x= Rate, y= ..prop.., group= genre,fill=genre)) + 
-   geom_bar(col ="white" , position="dodge",stat = "count") + 
-   scale_fill_discrete()+
-   labs(x="Rate" , "y=Proportion")+
-   theme_light()
- 
-```
- 
-```{r}
-  ggplot(film, aes(x = rating)) +
-    geom_density(aes(color = genre)) +
-    theme_light()
-```
-From this density gragh we can see that Short,  Documentary,Comedy and Animation films are more likely to get rates over 7.5 compared to rates 
-lower than 7 ( 5 to be exact )
-
-We notice that the majority of films are within one of the 3 most dominant categories 
-Action , Comedy and Drama .
-On the opposite Animation Documentary and Short films have relatively close frequencies . 
-And Romance films are comparatively very rare among our list of films ( only 16 films where Romantic among all 2387)
-
-```{r} 
-# Romance films 
-summary(film[film$genre=="Romance",]$rating)
-```
-
-Given the barchart we notice that in our dataset all Romance films have ratings below 7. 
-This might indicate that Romance is not a strong explanation of rating. 
- 
- 
-```{r}
-# Budget # 
-#=========#
-ggplot( film , aes( x= Rate , y= budget,fill=Rate )) + 
-   geom_boxplot() +
-   scale_fill_manual(values=c("coral2", "lightblue"))+
-   labs(x="Ratings" , y =paste("Budget (in $ 10 ^3's"))+
-   theme_light()
-
-
-```
-
-```{r}
-# Length # 
-#==========# 
-
-summary(film$length)  # There are 92 missing data 
-
-# Comparing the 3rd Quartile and Maximum value ( 100, #399 respectively ) we see that length has many outliers
-
-dim(na.omit(film[  film$length >100 & film$Rate==">7",] ))[1]
-
-# Check density of length 
-ggplot(film , aes(x=length)) + 
-   geom_bar()+
-   theme_light()
-
-# Rate ~ Length 
-ggplot(film , aes(x= Rate , y= scale(length), fill = Rate)) + 
-   geom_boxplot() +
-   scale_fill_manual(values=c("coral3", "lightblue"))+
-   labs(x="Ratings" , y ="Length (in minutes)")+
-   theme_light()
-
-
-# Year # 
-#=======# 
-ggplot( film , aes(x = Rate , y = year )) + 
-  geom_boxplot()
-  
-
-<<<<<<< Updated upstream
-
-
-```
-
-```{r}
-
-# Positive Votes # 
-#=================#
-
-# Check variability of Votes variable 
-ggplot(film , aes(x=scale(votes),y=rating))+ 
-   geom_jitter(col= "aquamarine2",width=0.5)+
-   labs(x="Votes ( scaled) " , y="Rating ( 1-10) " , title = "Rating of films based on Positive Votes ")+
-      theme_light()
-
- ggplot(film , aes(y= log(votes) , x= Rate , fill=Rate )) + 
-   geom_boxplot() + 
-   scale_fill_discrete()+
-   labs(x="Rate" , y = "Number of Positive Votes")+
-   theme_light()
-```
-
-```{r}
-    # Year # 
-#=================#
-ggplot(film , aes(x = (year) , group= Rate , fill=Rate)) + 
-   scale_fill_manual(values = c("coral3" , "steelblue"))+
-   geom_bar()
-
-
-```
-
-```{r}
-# Correlation between the explanatory variables 
-ggplot(No_Rom_films , aes(x=genre , y=length )) + 
-   geom_boxplot(fill="HotPink3")+
-      theme_light()
-
-corr <- data.frame(lapply(film[,-c(1,6)], as.integer))
-corr <- corr %>% 
-   mutate_all(scale)
-# Plot the graphg
-library(GGally)
-ggcorr(corr,
-    method = c("pairwise", "spearman"),
-    nbreaks = 6,
-    hjust = 0.8,
-    label = TRUE,
-    label_size = 3,
-    color = "grey50")
-``` 
-We see in general films' duration are roughly in same range except Animation and Short films. Both have comparatively smaller length. 
-
-```{r model}
-
-# Data frame with Romance genre removed 
-No_Rom_films <- film[!(film$genre == "Romance"),]
-
-# Remove missing values 
-No_Rom_films <- na.omit(No_Rom_films)
-
-# Now genre is categorical while length is numerical 
- model <- glm( Rate ~ genre + length , data = No_Rom_films , 
-               family = binomial(link = "logit"))
- summary(model)
-
-```
-
-
-=======
-<<<<<<< Updated upstream
-```
-
-=======
-
-
-```
-
-```{r}
-
-# Positive Votes # 
-#=================#
- ggplot(film , aes(y= log(votes) , x= Rate , fill=Rate )) + 
-   geom_boxplot() + 
-   scale_fill_discrete()+
-   labs(x="Rate" , y = "Number of Positive Votes")+
-   theme_light()
-```
-
-```{r}
-    # Year # 
-#=================#
-ggplot(film , aes(x = (year) , group= Rate , fill=Rate)) + 
-   geom_bar()
-
-
-```
-
-```{r}
-# Correlation between the explanatory variables 
-ggplot(film , aes(x=genre , y=length )) + 
-   geom_boxplot(fill="HotPink3")+
-      theme_light()
-
-
-corr <- data.frame(lapply(film[,-c(1,6)], as.integer))
-corr <- corr %>% 
-   mutate_all(scale)
-# Plot the graphg
-library(GGally)
-ggcorr(corr,
-    method = c("pairwise", "spearman"),
-    nbreaks = 6,
-    hjust = 0.8,
-    label = TRUE,
-    label_size = 3,
-    color = "grey50")
-``` 
-We see in general films' duration are roughly in same range except Animation and Short films. Both have comperatively smaller lenth 
-
-```{r model}
-# Now genre is categorical while length is numerical 
- model <- glm( Rate ~ genre + length , data = film , 
-               family = binomial(link = "logit"))
- summary(model)
-```
-
-```{r fullmodel}
-str(film)
-modelfull <- glm( Rate ~ genre + length + year + budget + votes, data = film , 
-               family = binomial(link = "logit"))
-summary(modelfull)
-
-```
-
-```{r 3model}
-str(film)
-model3 <- glm( Rate ~ genre + length + budget, data = film , 
-               family = binomial(link = "logit"))
-summary(model3)
-
-```
-
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 # Introduction {#sec:Intro}
+
 IMDb is a platform that provides information , ratings and reviews on films, movies and many other streaming content. 
 Our group was given a dataset taken from this databese, which has records of 2387 films released from  ` r min(film$year) ` to `r max(film$year)`
 Each film has a unique identification number (id) and some other measurments related to it. Those are : 
@@ -305,14 +49,17 @@ Each film has a unique identification number (id) and some other measurments rel
 \item $ Vote_i $   : Number of positive votes
 \item $ Genre_i $  : Genre of film
 \item $ Rating_i $ : IMDb rating from 1 to 10 
-
 \end {itemiza}
 
 
 
 
-
 # Exploratory Data Analysis {#sec:EDA}
+
+Taking a glance at the summaries of the variables shown in Table \ref{tab:summary} we notice that length variable has many outliers , and that is given by 
+the big difference between its maximum value and its third quartile value ,that is  399 minutes and 100 minutes respectively.
+Budget also has a wide range of variability and an amount of outliers . 
+It is worth mentioning that votes have a large sandard deviation , 4370 to be exact and that might be because of an outlier that presents a huge difference with the rest. Possibly a small number of films had respectively huge number of votings compared to the rest of films. 
 
 ```{r summary}
 my_skim <- skim_with(base = sfl(n = length))
@@ -326,43 +73,209 @@ film%>%
         booktabs = TRUE, linesep = "", digits = 3) %>%
   kable_styling(font_size = 10, latex_options = "hold_position")
 ```
-Taking a glance at the summaries of the variables we see notice that length variable has many outliers , and that is given by 
-the big difference between its maximume value and its third quartile value ,that is  399 minutes and 100 minutes respectively.
-Budget also has a wide range of variability and an amount of outliers . 
-It is worth mentioning that votes have a large sandard deviation , 4370 to be exact and that might be because of an outlier that presents a huge difference with the rest. Possibly a small number of films had respectively huge number of votings compared to the rest of films. 
 
+```{r ratings ,out.width='68%', fig.align="center",fig.cap = "\\label{fig:ratings} Density Of Ratings", fig.pos = 'H'}
+film %>% 
+   select(rating) %>%
+  summary()
 
-
-
-
-```{r}
-table(film$genre)
+ggplot(film, aes(x=rating)) + 
+   geom_histogram(col="white",fill="wheat4")+
+   labs(y="Frequency")+
+   scale_x_continuous(name="Rating", limits=c(0, 10),n.breaks = 10)+
+   theme_light()
 ```
 
-```{r boxplot ,out.width='68%', fig.pos="H",fig.align='center', fig.cap="\\label{fig:boxplot}  IMDB rating by genre"}
-ggplot(film, aes(genre,rating))+
-  geom_boxplot(fill="SpringGreen3")+
-  labs(x="Genre",y=" IMDB rating")+
-  theme_light()
+
+```{r genre , out.width='68%', fig.align="center",fig.cap = "\\label{fig:genre} Frequency of each genre.", fig.pos = 'H'}
+  
+# Genre Variable #
+#================#
+
+# check variability 
+ggplot(film , aes(x=genre)) + 
+   geom_bar(col= "white",fill="SkyBlue3",ylim=c(0,700,50)) + 
+   geom_text(aes(label=..count..),stat="count", vjust=1.2, color="white", size=3.5 )+
+   labs(x="Genre" , y ="Frequency")+
+   theme_light()
 ```
+
+
+Given the barplot in Figure\ref{fig:genre} we notice that the majority of films are within one of the 3 most dominant categories 
+Action, Comedy and Drama. On the opposite Animation Documentary and Short films have relatively lower frequencies. 
+Finaly Romance films are comparatively very rare among our list of films ( only `r nrow(film[film$genre=="Romance",]) ` films where Romantic among all `r nrow(film) `)
+
+``` {r}
+# Contingency Table 
+film %>% 
+     tabyl(Rate, genre) %>% 
+     adorn_percentages() %>% 
+     adorn_pct_formatting() %>% 
+     adorn_ns() %>%
+   kable(caption = '\\label{tab:summary}Summary statistics of variables in the data set.' ,
+         booktabs = TRUE, linesep = "") %>%
+  kable_styling(font_size = 10, latex_options = "hold_position")
+
+
+ggplot ( film , aes(x= Rate, y= ..prop.., group= genre,fill=genre)) + 
+   geom_bar(col ="white" , position="dodge",stat = "count") + 
+   scale_fill_discrete()+
+   labs(x="Rate" , y="Proportion")+
+   theme_light()
+ 
+  ggplot(film, aes(x = rating)) +
+    geom_density(aes(color = genre)) +
+    theme_light()
+  
+  # Romance films 
+summary(film[film$genre=="Romance",]$rating)
+
+```
+From both the density graph and the barplot, we can see that Short,Documentary,Comedy and Animation films are more likely to get rates over 7.5 compared to rates given to Romance, Drama and Action films,lower than 7 ( 5 to be exact ) 
+In addition given the barchart we notice that in our dataset all Romance films have ratings below 7. 
+This might indicate that Romance is not a strong explanation of rating. 
+ 
+ 
+```{r budget, out.width='68%', fig.align="center",fig.cap = "\\label{fig:budget} Budget and Rate.", fig.pos = 'H'}
+# Budget # 
+#=========#
+ggplot( film , aes( x= Rate , y= budget,fill=Rate )) + 
+   geom_boxplot() +
+   scale_fill_manual(values=c("coral2", "lightblue"))+
+   labs(x="Rate" , y =paste("Budget (in $ 10000's )"))+
+   theme_light()
+
+
+```
+
+```{r length ,  out.width='68%', fig.align="center",fig.cap = "\\label{fig:length} Rating based on length of the film.", fig.pos = 'H'}
+
+# Length # 
+#==========# 
+
+summary(film$length) 
+
+# There are 92 missing data 
+# Comparing the 3rd Quartile and Maximum value ( 100, 399 respectively ) we see that length has many outliers
+
+# # Check density of length 
+# ggplot(film , aes(x=length)) + 
+#    geom_bar(fill="lightblue")+
+#    theme_light()
+
+# Rate ~ Length 
+ggplot(film , aes(x= Rate , y= length, fill = Rate)) + 
+   geom_boxplot() +
+   scale_fill_manual(values=c("coral3", "lightblue"))+
+   labs(x="Ratings" , y ="Length (in minutes)")+
+   theme_light()
+
+```
+Figure \ref{fig:length} shows that the length feature has many outliers. That is explained by the large number of point graphed outsiede the box.Those points represent films that have duration longer than 100 minutes which is our $3^{rd}$ quartile. We have `r nrow(na.omit(film[  film$length >100 & film$Rate=="<=7",] ))` outliers.
+Despite the outliers we might assume that length has an effect on the rate since for each group of rate the range of length is significantlly different.
+
+```{r year ,  out.width='68%', fig.align="center",fig.cap = "\\label{fig:year} Rating based on Year Of Release of the film", fig.pos = 'H'} 
+# Year # 
+#=======# 
+ggplot(film , aes(x = (year) , group= Rate , fill=Rate)) + 
+   scale_fill_manual(values = c("coral3" , "steelblue"))+
+   geom_bar()
+
+ggplot( film , aes(x = Rate , y = year )) + 
+  geom_boxplot(fill=c("coral3","steelblue")) + 
+   labs(y="Year of Release")+
+   theme_light()
+
+```
+Both plots suggest that the Year of release does not have a role in the rating scale.
+First, Figure\ref{fig:year} graphs overlapping boxes which indicates that there is no significant difference
+between the two groups of rating scales based on the Year of release of the film.
+Also from the second plot, the plot of rate over the years ,although it seems that people tend to rate more films however the difference between giving a rate over 7 and lower than 7 for different years of release did not chamge dramatically.
+That also suggests that Year of release does not explain the rating scale given to a film.
+
+```{r votes,  out.width='68%', fig.align="center",fig.cap = "\\label{fig:votes} Rating based on Number of positive votes", fig.pos = 'H'}
+
+# Positive Votes # 
+#=================#
+
+# Check variability of Votes variable 
+ggplot(film , aes(x=scale(votes),y=rating))+ 
+   geom_jitter(col= "lightblue",width=0.5)+
+   labs(x="Votes ( scaled) " , y="Rating ( 1-10) " , title = "Rating of films based on Positive Votes ")+
+      theme_light()
+
+ ggplot(film , aes(y= log(votes) , x= Rate , fill=Rate )) + 
+   geom_boxplot() + 
+    scale_fill_manual(values=c("coral2", "lightblue"))+
+   labs(x="Rate" , y = "Number of Positive Votes")+
+   theme_light()
+```
+Taking into account the number of positive votes again does not help identifying if a film is most probably getting a rate lower than 7 or higher than 7 . 
+
+
+
+```{r corr }
+# Correlation between the explanatory variables 
+ggplot(film , aes(x=genre , y=length )) + 
+   geom_boxplot(fill="HotPink3")+
+   labs(x="Genre" , y = "Length")+
+      theme_light()
+
+corr <- data.frame(lapply(film[,-c(1,6)], as.integer))
+corr <- corr %>% 
+   mutate_all(scale)
+# Plot the graphg
+library(GGally)
+ggcorr(corr,
+    method = c("pairwise", "spearman"),
+    nbreaks = 6,
+    hjust = 0.8,
+    label = TRUE,
+    label_size = 3,
+    color = "grey50")
+``` 
+We see that in general films' duration are roughly in same range except Animation and Short films. Both have comparatively smaller length . 
+In summary we do not observe any correlation between any of our continuous explanatory variables as all have their pairwise correlation coefficient lower than 0.4. 
+
+
 
 
 # Formal Data Analysis {#sec:FDA}
 
+As we noticed from our exploratory analysis the genre Romance has no significant explanation and thus we remove observations that are Romance films. 
+Also since we notices that length of the film might be a significant property that can determine the rating scale we proceed and remove observations that have missing values for length.
+```{r model}
 
-```{r} 
+# Data frame with Romance genre removed 
+No_Rom_films <- film[!(film$genre == "Romance"),]
+
+# Remove missing values 
+No_Rom_films <- na.omit(No_Rom_films)
+
+# Now genre is categorical while length is numerical 
+ model <- glm( Rate ~ genre + length  , data = No_Rom_films , 
+               family = binomial(link = "logit"))
+ summary(model)
+
+```
+
+
+```{r modelfull} 
 # Full model with all variables 
 
-model_full <- glm ( Rate ~ year + genre + length + votes + budget , 
+model_full <- glm ( Rate ~ year + genre + length + log(votes) + log(budget) , 
                     data= No_Rom_films , 
                     family = binomial(link = "logit"))
+summary(model_full)
 plot_model(model_full , show.values = TRUE , show.p = FALSE )
+plot_model(model_full , show.values = TRUE , transform = NULL)
 
-# now we'll check significance of those coeff 
+# now we'll check significance of those coefficients  
 # 95% CI 
-confint( model_full) %>% 
+confint(model_full) %>% 
    kable()%>% 
    kable_styling()
+
 
 
 model_full %>% 
@@ -370,7 +283,7 @@ model_full %>%
    exp()
 ```
 
-```{r}
+```{r model2}
 # model using only significant explanatory
 
 model2 <- glm ( Rate ~ genre + length + votes + budget , 
@@ -378,6 +291,13 @@ model2 <- glm ( Rate ~ genre + length + votes + budget ,
                     family = binomial(link = "logit"))
 
 summary(model2)
+```
+
+```{r model3}
+model3 <- glm( Rate ~ genre + length + budget, data = film , 
+               family = binomial(link = "logit"))
+summary(model3)
+
 ```
 
 
