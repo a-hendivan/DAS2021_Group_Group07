@@ -24,6 +24,7 @@ library(broom)
 library(janitor)
 library(ggplot2)
 library(GGally)
+library(sjPlot)
 ```
 
 ```{r data}
@@ -99,14 +100,11 @@ And Romance films are comparatively very rare among our list of films ( only 16 
 
 ```{r} 
 # Romance films 
-ggplot(film[film$genre=="Romance",] , aes(x=rating)) +
-   geom_bar(fill="RosyBrown3")+
-   labs(title="Rating of Romance films")+
-   theme_light()
+summary(film[film$genre=="Romance",]$rating)
 ```
 
-Given the barchart we notice that in our datasel all Romance films have ratings below 7. 
-This might indicate that Romance is not a strong explanation a
+Given the barchart we notice that in our dataset all Romance films have ratings below 7. 
+This might indicate that Romance is not a strong explanation of rating. 
  
  
 ```{r}
@@ -114,8 +112,8 @@ This might indicate that Romance is not a strong explanation a
 #=========#
 ggplot( film , aes( x= Rate , y= budget,fill=Rate )) + 
    geom_boxplot() +
-   scale_fill_manual(values=c("blue4", "lightblue"))+
-   labs(x="Ratings" , y =paste("Budget (in $ 10 ^{3} 's"))+
+   scale_fill_manual(values=c("coral2", "lightblue"))+
+   labs(x="Ratings" , y =paste("Budget (in $ 10 ^3's"))+
    theme_light()
 
 
@@ -136,12 +134,16 @@ ggplot(film , aes(x=length)) +
    geom_bar()+
    theme_light()
 
-ggplot(film , aes(x= Rate , y= log(length), fill = Rate)) + 
+# Rate ~ Length 
+ggplot(film , aes(x= Rate , y= scale(length), fill = Rate)) + 
    geom_boxplot() +
-   scale_fill_manual(values=c("blue4", "lightblue"))+
+   scale_fill_manual(values=c("coral3", "lightblue"))+
    labs(x="Ratings" , y ="Length (in minutes)")+
    theme_light()
 
+
+# Year # 
+#=======# 
 ggplot( film , aes(x = Rate , y = year )) + 
   geom_boxplot()
   
@@ -154,6 +156,13 @@ ggplot( film , aes(x = Rate , y = year )) +
 
 # Positive Votes # 
 #=================#
+
+# Check variability of Votes variable 
+ggplot(film , aes(x=scale(votes),y=rating))+ 
+   geom_jitter(col= "aquamarine2",width=0.5)+
+   labs(x="Votes ( scaled) " , y="Rating ( 1-10) " , title = "Rating of films based on Positive Votes ")+
+      theme_light()
+
  ggplot(film , aes(y= log(votes) , x= Rate , fill=Rate )) + 
    geom_boxplot() + 
    scale_fill_discrete()+
@@ -165,6 +174,7 @@ ggplot( film , aes(x = Rate , y = year )) +
     # Year # 
 #=================#
 ggplot(film , aes(x = (year) , group= Rate , fill=Rate)) + 
+   scale_fill_manual(values = c("coral3" , "steelblue"))+
    geom_bar()
 
 
@@ -172,10 +182,9 @@ ggplot(film , aes(x = (year) , group= Rate , fill=Rate)) +
 
 ```{r}
 # Correlation between the explanatory variables 
-ggplot(film , aes(x=genre , y=length )) + 
+ggplot(No_Rom_films , aes(x=genre , y=length )) + 
    geom_boxplot(fill="HotPink3")+
       theme_light()
-
 
 corr <- data.frame(lapply(film[,-c(1,6)], as.integer))
 corr <- corr %>% 
@@ -190,12 +199,18 @@ ggcorr(corr,
     label_size = 3,
     color = "grey50")
 ``` 
-We see in general films' duration are roughly in same range except Animation and Short films. Both have comperatively smaller lenth 
+We see in general films' duration are roughly in same range except Animation and Short films. Both have comparatively smaller length. 
 
 ```{r model}
 
+# Data frame with Romance genre removed 
+No_Rom_films <- film[!(film$genre == "Romance"),]
+
+# Remove missing values 
+No_Rom_films <- na.omit(No_Rom_films)
+
 # Now genre is categorical while length is numerical 
- model <- glm( Rate ~ genre + length , data = film , 
+ model <- glm( Rate ~ genre + length , data = No_Rom_films , 
                family = binomial(link = "logit"))
  summary(model)
 
@@ -205,7 +220,7 @@ We see in general films' duration are roughly in same range except Animation and
 # Introduction {#sec:Intro}
 IMDb is a platform that provides information , ratings and reviews on films, movies and many other streaming content. 
 Our group was given a dataset taken from this databese, which has records of 2387 films released from  ` r min(film$year) ` to `r max(film$year)`
-Each film has a unique identefecation number (id) and some other measurments related to it. Those are : 
+Each film has a unique identification number (id) and some other measurments related to it. Those are : 
 \begin {itemize} 
 \item $ Year_i $   : the year the film was released at cinemas 
 \item $ Length_i $ : duration of film in minutes 
@@ -225,7 +240,7 @@ Each film has a unique identefecation number (id) and some other measurments rel
 ```{r summary}
 my_skim <- skim_with(base = sfl(n = length))
 film%>%
-  select(-c(1,6)) %>% 
+  select(-c(1:2,6,8)) %>% 
   my_skim() %>% 
   transmute(Variable=skim_variable, Mean=numeric.mean, SD=numeric.sd,
             Min=numeric.p0, Q1=numeric.p25, Median=numeric.p50, Q3=numeric.p75,Max=numeric.p100,
@@ -234,6 +249,14 @@ film%>%
         booktabs = TRUE, linesep = "", digits = 3) %>%
   kable_styling(font_size = 10, latex_options = "hold_position")
 ```
+Taking a glance at the summaries of the variables we see notice that length variable has many outliers , and that is given by 
+the big difference between its maximume value and its third quartile value ,that is  399 minutes and 100 minutes respectively.
+Budget also has a wide range of variability and an amount of outliers . 
+It is worth mentioning that votes have a large sandard deviation , 4370 to be exact and that might be because of an outlier that presents a huge difference with the rest. Possibly a small number of films had respectively huge number of votings compared to the rest of films. 
+
+
+
+
 
 ```{r}
 table(film$genre)
@@ -248,6 +271,37 @@ ggplot(film, aes(genre,rating))+
 
 
 # Formal Data Analysis {#sec:FDA}
+
+
+```{r} 
+# Full model with all variables 
+
+model_full <- glm ( Rate ~ year + genre + length + votes + budget , 
+                    data= No_Rom_films , 
+                    family = binomial(link = "logit"))
+plot_model(model_full , show.values = TRUE , show.p = FALSE )
+
+# now we'll check significance of those coeff 
+# 95% CI 
+confint( model_full) %>% 
+   kable()%>% 
+   kable_styling()
+
+
+model_full %>% 
+   coef() %>% 
+   exp()
+```
+
+```{r}
+# model using only significant explanatory
+
+model2 <- glm ( Rate ~ genre + length + votes + budget , 
+                    data= No_Rom_films , 
+                    family = binomial(link = "logit"))
+
+summary(model2)
+```
 
 
 # Conclusion and further task {#sec:Conclude}
