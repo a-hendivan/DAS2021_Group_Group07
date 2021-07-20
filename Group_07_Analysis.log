@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.15)  19 JUL 2021 17:44
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.20)  20 JUL 2021 17:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1052,7 +1052,11 @@ File: Group_07_Analysis_files/figure-latex/corr -1.pdf Graphic file (type pdf)
 <use Group_07_Analysis_files/figure-latex/corr -1.pdf>
 File: Group_07_Analysis_files/figure-latex/corr -2.pdf Graphic file (type pdf)
 <use Group_07_Analysis_files/figure-latex/corr -2.pdf>
-[5] [6] (./Group_07_Analysis.aux)
+[5]
+File: Group_07_Analysis_files/figure-latex/modelfull-1.pdf Graphic file (type p
+df)
+<use Group_07_Analysis_files/figure-latex/modelfull-1.pdf>
+[6] [7] (./Group_07_Analysis.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1060,12 +1064,12 @@ Package rerunfilecheck Info: File `Group_07_Analysis.out' has not changed.
 (rerunfilecheck)             Checksum: 9B9852384C2B7335E0956223C6D34EB7;613.
  ) 
 Here is how much of TeX's memory you used:
- 17124 strings out of 478476
- 310214 string characters out of 5856960
- 783278 words of memory out of 5000000
- 37183 multiletter control sequences out of 15000+600000
+ 17139 strings out of 478474
+ 310815 string characters out of 5856935
+ 783454 words of memory out of 5000000
+ 37199 multiletter control sequences out of 15000+600000
  407475 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  87i,9n,120p,311b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Group_07_Analysis.pdf (6 pages).
+Output written on Group_07_Analysis.pdf (7 pages).

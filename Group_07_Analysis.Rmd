@@ -104,7 +104,7 @@ ggplot(film , aes(x=genre)) +
 
 ``` {r, out.width='75%', fig.align="center",fig.cap = "\\label{fig:genredist} Distribution of genre.", fig.pos = 'H'}
 # Contingency Table 
-film %>% 
+con_table<- film %>% 
      tabyl(Rate, genre) %>% 
      adorn_percentages() %>% 
      adorn_pct_formatting() %>% 
@@ -130,10 +130,9 @@ grid.arrange(p1,p2,nrow=2)
 
 ```
 From both the density graph and the barplot, we can see that Short,Documentary,Comedy and Animation films are more likely to get rates over 7.5 compared to rates given to Romance, Drama and Action films,lower than 7 ( 5 to be exact ) 
-Given the contingency Table \ref{tab:cont}
- we can make four important notes. First, all Romance films have ratings below 7. 
-Secondly, Animation and Short movies have a very little proportion that are rated below 7, only 3.3% and 0.1% respectively. 
-Lastly Drama films are most liket to be rated below 7, with only 4% being rated over 7.
+Given the contingency Table \ref{tab:cont}we can make some important notes. First, all Romance films have ratings below 7. 
+Secondly, Animation and Short movies have a very little proportion that are rated below 7, only 3.3% and  0.1% respectively. 
+Lastly Drama films are most likely to be rated below 7, with only 4% being rated over 7.
 These observations lead eliminating those genres since they do not provide useful information for the rating scale.
 
  
@@ -265,58 +264,75 @@ where
 ```{r model, echo =FALSE , include= FALSE}
 
 # Data frame with Romance/Drama/Animation/Short genres removed 
-film2 <- film[!(film$genre %in% c("Romance","Drama","Animation","Short")),]
+film2 <- film[!(film$genre %in% c("Romance","Drama","Short","Animation")),]
 
 # Remove missing values from length 
 film2 <- na.omit(film2)
 
-# Now genre is categorical while length is numerical 
+# We will apply model with genre , length and budget as we assumed those are 
+# the mmost significant explanatories
  model <- glm( Rate ~ genre + length + budget  , data = film2 , 
                family = binomial(link = "logit"))
 
-m1_sum <- glance(model)%>% 
-    select(AIC,deviance) %>% 
-    kable()
-
 ```
 
+Now to assess model fit we compare it other model. First we compare it with the full model, which has all features as explanatory variables. 
 
-```{r modelfull, include=FALSE} 
-# Full model with all variables 
+
+
+```{r modelfull, out.width='58%', fig.align="center",fig.cap = "\\label{fig:fullmodelCI} 95\\% CI for Odds ratio", fig.pos = 'H' } 
+
+# Apply full model using all available properties 
+# We also log-transform the variable votes as it has wide variability 
+
 model_full <- glm ( Rate ~ year + genre + length + log(votes) + budget , 
                     data= film2 , 
                     family = binomial(link = "logit"))
-summary(model_full)
-# in out put we see that year is not a significant explanatory , p-value = 0.4714 
 
-mf_sum <- glance(model_full ) %>% 
-   select(AIC,deviance) %>% 
-   kable()
-plot_model(model_full , show.values = TRUE , show.p = FALSE )
-plot_model(model_full , show.values = TRUE , transform = NULL)
-
-# now we'll check significance of those coefficients  
-# 95% CI 
-confint(model_full) %>% 
-   kable()%>% 
-   kable_styling()
+ # p1 <- plot_model(model_full , show.values = TRUE , show.p = FALSE ) + theme_light()
+plot_model(model_full , show.values = TRUE , show.p = FALSE) + theme_light()
 
 
 
-model_full %>% 
-   coef() %>% 
-   exp()
 ```
+The odds ratio is estimated as follows 
+$$\frac{\hat p}{1-\hat p} = \exp(x^T_i\cdot\hat{\beta})$$ 
+$$= \exp( \hat\beta_0 + \hat\beta_1 \mathbb{I}_{comedy}+\hat\beta_2 \mathbb{I}_{documentary} + \hat\beta_3 \cdot Length_i + \hat\beta_4\cdot Budget_i)$$
 
-```{r model2 , include=FALSE}
+Figure \ref{fig:fullmodelCI} shows that the coefficient for year has an estimate of`r exp(coefficients(model_full)["year"])` with 95\% confidence interval `r exp(confint(model_full)["year",])`, which contains 1 and that indicates that year is not a significant predictor for the odds ratio, thus we drop it from the model.
+Next we apply a model with year removed. Using the deviance difference we compare it with our model. 
+
+
+```{r model2 ,}
 # model with year removed
-
 model2 <- glm ( Rate ~ genre + length + log(votes) + budget, 
                     data= film2 , 
                     family = binomial(link = "logit"))
 
-summary(model2)
+anova(model,model2) %>% 
+   kable(caption = "\\label{tab:Dev} Defference of Deviance " , booktabs=T) %>% 
+   kable_styling(latex_options = "HOLD_position" , font_size = 10)
+dev_diff <- anova(model,model2)[2,"Deviance"]
+
 ```
+Table \ref{tab:Dev} gives the difference in the deviance between the two models. We use Chi-squared asymptotic theorem to conduct the hypothesis test . 
+Now ${\chi}^2(1;0.95)=$ `r round(qchisq(df=1 , p=0.95),digits=3)` and compared to the difference of deviance,
+`r round(qchisq(df=1 , p=0.95),digits=3)` \textless `r round(dev_diff,digits=3)`, this indicates that there is no significant evidence to reject the null hypothesis, which states that our model is a better fit than model2.
+
+
+## Interpretation of model's estimates 
+```{r}
+# add log-odds to the df 
+film2$logOdds <- model$fitted.values
+   film2$Odds <- exp(model$fitted.values)
+film2$test <- predict(model)
+                 
+
+```
+
+
+# Residuals 
+
 
 
 # Conclusion and further task {#sec:Conclude}
