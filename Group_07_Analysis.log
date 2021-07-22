@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.20)  20 JUL 2021 17:33
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.20)  21 JUL 2021 12:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1027,15 +1027,13 @@ f)
 File: Group_07_Analysis_files/figure-latex/genre -1.pdf Graphic file (type pdf)
 
 <use Group_07_Analysis_files/figure-latex/genre -1.pdf>
-
-Overfull \hbox (9.31499pt too wide) in paragraph at lines 166--174
- [][] 
- []
-
 File: Group_07_Analysis_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (
 type pdf)
 <use Group_07_Analysis_files/figure-latex/unnamed-chunk-1-1.pdf>
 [2]
+
+LaTeX Warning: Reference `tab:cont' on page 3 undefined on input line 174.
+
 File: Group_07_Analysis_files/figure-latex/budget-1.pdf Graphic file (type pdf)
 
 <use Group_07_Analysis_files/figure-latex/budget-1.pdf>
@@ -1058,17 +1056,20 @@ df)
 <use Group_07_Analysis_files/figure-latex/modelfull-1.pdf>
 [6] [7] (./Group_07_Analysis.aux)
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `Group_07_Analysis.out' has not changed.
-(rerunfilecheck)             Checksum: 9B9852384C2B7335E0956223C6D34EB7;613.
+(rerunfilecheck)             Checksum: 661A599E9EC1D59F0E038EAF3CC5AB9F;942.
  ) 
 Here is how much of TeX's memory you used:
- 17139 strings out of 478474
- 310815 string characters out of 5856935
- 783454 words of memory out of 5000000
- 37199 multiletter control sequences out of 15000+600000
- 407475 words of font info for 65 fonts, out of 8000000 for 9000
+ 17143 strings out of 478474
+ 310900 string characters out of 5856935
+ 783415 words of memory out of 5000000
+ 37202 multiletter control sequences out of 15000+600000
+ 407483 words of font info for 66 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  87i,9n,120p,311b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
 
