@@ -38,10 +38,10 @@ film <- film %>%
 # There are 92 missing data 
 ```
 # Introduction {#sec:Intro}
-
-IMDb is a platform that provides information , ratings and reviews on films, movies and many other streaming content. 
-Our group was given a dataset taken from this databese, which has records of 2387 films released from  `r min(film$year) ` to `r max(film$year)`.
-Each film has a unique identification number (id) and some other measurments related to it. Those are : 
+As the industry of film and movie production is growing every day, understanding the reaction of viewers towards past released films might give some approach for future content. The reaction can be measured through the overall rating a film gets.
+A useful online source for tackling this task is the IMDb platform which provides information, ratings and reviews on films, movies and many other streaming content. 
+The dataset assigned to our group was taken from this databese ehich cosists of records of `r nrow(film)` films released from  `r min(film$year) ` to `r max(film$year)`.
+Each film has a unique identification number (id) along with some other measurements related to it. Those are  : 
 \begin{itemize} 
 \item $ Year_i $   : the year the film was released at cinemas 
 \item $ Length_i $ : duration of film in minutes 
@@ -50,7 +50,9 @@ Each film has a unique identification number (id) and some other measurments rel
 \item $ Genre_i $  : Genre of film
 \item $ Rating_i $ : IMDb rating from 1 to 10 
 \end{itemize}
-
+The aim of this analysis is to find which of these properties if any, are significant in predicting whether a film will get IMBd rate over 7 or below 7.
+We first conduct an exploratory analysis to detect any anomalies in the data set and to determine an appropriate class of model to fit. Next we proceed and fit the model and interpret the results of the fit.
+Finally 
 
 
 
@@ -166,6 +168,11 @@ film %>%
    kable_styling(latex_options =  "HOLD_position" ,font_size = 10)
    
 # There are 92 missing data 
+
+summary(film$length) 
+
+# There are 55 missing data 
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
 # Comparing the 3rd Quartile and Maximum value ( 100, 399 respectively ) we see that length has many
 # outliers
 
@@ -323,6 +330,12 @@ plot_model(full_model , show.values = TRUE , show.p = FALSE) + theme_light()
 
 
 ```
+<<<<<<< HEAD
+=======
+The odds ratio is estimated as follows 
+$$\frac{\hat p}{1-\hat p} = \exp(x^T_i\cdot\hat{\beta})$$ 
+$$= \exp( ~~\hat\beta_0 + \hat\beta_1 \mathbb{I}_{A}+\hat\beta_2 \mathbb{I}_{B} + \hat\beta_3 \mathbb{I}_{C}  + \hat\beta_4\cdot Length_i~~ )$$
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
 Given the output of the full model and plotting the estimates as shown in Figure \ref{fig:fullmodelCI} shows that the coefficient for year has an estimate of`r exp(coefficients(full_model)["year"])` with 95\% confidence interval `r exp(confint(full_model)["year",])`, which contains 1 and that indicates that the variable year is not a significant predictor for the odds ratio of getting rate over 7, thus we drop it from the model.
 Next we apply a model with year removed. Using the deviance difference we compare it with our model. 
 
@@ -345,14 +358,23 @@ Now ${\chi}^2(1;0.95)=$ `r round(qchisq(df=1 , p=0.95),digits=3)` and compared t
 
 ## Interpretation of model's estimates 
 
+<<<<<<< HEAD
 
+=======
+Given  the estimates by fitting our model we see that all estimates are negative suggesting that films of type B and C both have log-odds of getting rate higher than 7, lower than type A.
+Moreover the log(length) coefficient also suggests that for each minute longer the log-odds ration will dicrease by `r `
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
 ```{r pred,out.width='58%', fig.align="center",fig.cap = "\\label{fig:predit} Predicted Probability of getting rate over 7 by Type and Length of film ", fig.pos = 'H' }
 
 p1 <- plot_model(model, type = "pred", title = "",
             axis.title = c("Type", "Prob. of a film being rated over 7 "))$type +
    theme_light()
 p2 <- plot_model(model, type = "pred", title = "",
+<<<<<<< HEAD
             axis.title = c("Log(Length) (in minutes)", "Prob. of a film being rated over 7 "),se=F)$length+
+=======
+            axis.title = c("Log(Length) (in minutes)", "Prob. of a film being rated over 7 "))$length+
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
    theme_light()
 grid.arrange(p1,p2,nrow=1)
 
@@ -365,10 +387,13 @@ coeffs <- model %>%
 
 Given  the estimates by fitting our model we see that all estimates are negative suggesting that films of type B and C both have log-odds of getting rate higher than 7, lower than type A. In particular a film of type B will have log-odds lower than type A films by `r round(coeffs["typeB"],2)` while type C films will have lower log-odds by `r round(coeffs["typeC"],2)`.
 Moreover the log(length) coefficient also suggests that adding length of one minute to a film will result in decreasing of the log-odds ratio e by `r round(coeffs["log(length)"],2)`
+<<<<<<< HEAD
 
 We can also get estimates of the odds ration as follows 
 $$\frac{\hat p}{1-\hat p} = \exp(x^T_i\cdot\hat{\beta})$$ 
 $$= \exp( ~~\hat\beta_0 + \hat\beta_1 \mathbb{I}_{A}+\hat\beta_2 \mathbb{I}_{B} + \hat\beta_3 \mathbb{I}_{C}  + \hat\beta_4\cdot Length_i~~ )$$
+=======
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
 
 ## Residuals 
 
@@ -379,3 +404,8 @@ $$= \exp( ~~\hat\beta_0 + \hat\beta_1 \mathbb{I}_{A}+\hat\beta_2 \mathbb{I}_{B} 
 In summary we conclude that the properties which are more useful in determining whether a film will be more likely to get an overall rate over 7 or below 7, are type of film and length. By fitting our model it is suggested that films that are of type A, those are documentary and short films , have much higher probability of getting rate over 7 in comparison with the rest types of films.
 
 
+<<<<<<< HEAD
+=======
+# Reference 
+
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
