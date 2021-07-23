@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.20)  22 JUL 2021 22:51
+=======
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.20)  21 JUL 2021 12:41
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
 =======
 This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.20)  21 JUL 2021 12:41
 >>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
@@ -1066,9 +1070,13 @@ File: Group_07_Analysis_files/figure-latex/pred-1.pdf Graphic file (type pdf)
 LaTeX Warning: There were undefined references.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `Group_07_Analysis.out' has not changed.
+<<<<<<< HEAD
 <<<<<<< HEAD
 (rerunfilecheck)             Checksum: EF5A7314967092D32225750196BDA9AA;956.
  ) 
@@ -1082,11 +1090,19 @@ Here is how much of TeX's memory you used:
 (rerunfilecheck)             Checksum: 661A599E9EC1D59F0E038EAF3CC5AB9F;942.
  ) 
 Here is how much of TeX's memory you used:
+=======
+(rerunfilecheck)             Checksum: 661A599E9EC1D59F0E038EAF3CC5AB9F;942.
+ ) 
+Here is how much of TeX's memory you used:
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
  17143 strings out of 478474
  310900 string characters out of 5856935
  783415 words of memory out of 5000000
  37202 multiletter control sequences out of 15000+600000
  407483 words of font info for 66 fonts, out of 8000000 for 9000
+<<<<<<< HEAD
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
+=======
 >>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
  14 hyphenation exceptions out of 8191
  87i,9n,120p,311b,350s stack positions out of 5000i,500n,10000p,200000b,80000s

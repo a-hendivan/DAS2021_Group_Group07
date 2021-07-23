@@ -172,6 +172,9 @@ film %>%
 summary(film$length) 
 
 # There are 55 missing data 
+<<<<<<< HEAD
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
+=======
 >>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
 # Comparing the 3rd Quartile and Maximum value ( 100, 399 respectively ) we see that length has many
 # outliers
@@ -335,8 +338,11 @@ plot_model(full_model , show.values = TRUE , show.p = FALSE) + theme_light()
 The odds ratio is estimated as follows 
 $$\frac{\hat p}{1-\hat p} = \exp(x^T_i\cdot\hat{\beta})$$ 
 $$= \exp( ~~\hat\beta_0 + \hat\beta_1 \mathbb{I}_{A}+\hat\beta_2 \mathbb{I}_{B} + \hat\beta_3 \mathbb{I}_{C}  + \hat\beta_4\cdot Length_i~~ )$$
+<<<<<<< HEAD
 >>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
-Given the output of the full model and plotting the estimates as shown in Figure \ref{fig:fullmodelCI} shows that the coefficient for year has an estimate of`r exp(coefficients(full_model)["year"])` with 95\% confidence interval `r exp(confint(full_model)["year",])`, which contains 1 and that indicates that the variable year is not a significant predictor for the odds ratio of getting rate over 7, thus we drop it from the model.
+=======
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
+Given the output of the full model and plotting the estimates as shown in Figure \ref{fig:fullmodelCI} shows that the coefficient for year has an estimate of `r exp(coefficients(full_model)["year"])` with 95\% confidence interval `r exp(confint(full_model)["year",])`, which contains 1 and that is evidence of lack of significance as a predictor for the odds ratio of getting rate over 7, thus we drop it from the model.
 Next we apply a model with year removed. Using the deviance difference we compare it with our model. 
 
 ```{r model2 ,}
@@ -359,7 +365,12 @@ Now ${\chi}^2(1;0.95)=$ `r round(qchisq(df=1 , p=0.95),digits=3)` and compared t
 ## Interpretation of model's estimates 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+Given  the estimates by fitting our model we see that all estimates are negative suggesting that films of type B and C both have log-odds of getting rate higher than 7, lower than type A.
+Moreover the log(length) coefficient also suggests that for each minute longer the log-odds ration will dicrease by `r `
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
 =======
 Given  the estimates by fitting our model we see that all estimates are negative suggesting that films of type B and C both have log-odds of getting rate higher than 7, lower than type A.
 Moreover the log(length) coefficient also suggests that for each minute longer the log-odds ration will dicrease by `r `
@@ -371,7 +382,11 @@ p1 <- plot_model(model, type = "pred", title = "",
    theme_light()
 p2 <- plot_model(model, type = "pred", title = "",
 <<<<<<< HEAD
+<<<<<<< HEAD
             axis.title = c("Log(Length) (in minutes)", "Prob. of a film being rated over 7 "),se=F)$length+
+=======
+            axis.title = c("Log(Length) (in minutes)", "Prob. of a film being rated over 7 "))$length+
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
 =======
             axis.title = c("Log(Length) (in minutes)", "Prob. of a film being rated over 7 "))$length+
 >>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
@@ -388,10 +403,13 @@ coeffs <- model %>%
 Given  the estimates by fitting our model we see that all estimates are negative suggesting that films of type B and C both have log-odds of getting rate higher than 7, lower than type A. In particular a film of type B will have log-odds lower than type A films by `r round(coeffs["typeB"],2)` while type C films will have lower log-odds by `r round(coeffs["typeC"],2)`.
 Moreover the log(length) coefficient also suggests that adding length of one minute to a film will result in decreasing of the log-odds ratio e by `r round(coeffs["log(length)"],2)`
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 We can also get estimates of the odds ration as follows 
 $$\frac{\hat p}{1-\hat p} = \exp(x^T_i\cdot\hat{\beta})$$ 
 $$= \exp( ~~\hat\beta_0 + \hat\beta_1 \mathbb{I}_{A}+\hat\beta_2 \mathbb{I}_{B} + \hat\beta_3 \mathbb{I}_{C}  + \hat\beta_4\cdot Length_i~~ )$$
+=======
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
 =======
 >>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
 
@@ -405,6 +423,11 @@ In summary we conclude that the properties which are more useful in determining 
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+# Reference 
+
+>>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
 =======
 # Reference 
 
