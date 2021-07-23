@@ -37,6 +37,7 @@ film <- film %>%
 # Find NA observations 
 # There are 92 missing data 
 ```
+
 # Introduction {#sec:Intro}
 As the industry of film and movie production is growing every day, understanding the reaction of viewers towards past released films might give some approach for future content. The reaction can be measured through the overall rating a film gets.
 A useful online source for tackling this task is the IMDb platform which provides information, ratings and reviews on films, movies and many other streaming content. 
@@ -54,14 +55,12 @@ The aim of this analysis is to find which of these properties if any, are signif
 We first run an exploratory analysis to detect any anomalies in the data set and to determine an appropriate class of model to fit. Next we proceed and fit the model and interpret the results of the fit.
 Finally 
 
-
-
 # Exploratory Data Analysis {#sec:EDA}
 
-Taking a glance at the summaries of the variables shown in Table \ref{tab:summary} we notice that length variable has many outliers , and that is explained by the big difference between its maximum value and its third quartile value ,that is  399 minutes and 100 minutes respectively.
+Taking a glance at the summaries of the variables shown in Table \ref{tab:summary} we notice that length variable has many outliers , and that is explained by the big difference between its maximum value and its third quartile value ,that is  399 minutes and 100 minutes respectively. 
 Budget also has a wide range of variability and an amount of outliers . 
-It is worth mentioning that votes have a large standard deviation , 4370 to be exact and that might be because of an outlier that presents a huge difference with the rest. Possibly a small number of films have comparatively huge number of votings compared to the rest of the films.
-As for the rating variable we do not observe any irregularities which is also confirmed by its density ploted in Figure \ref{fig:rating}.
+It is worth mentioning that votes have a large standard deviation , 4370 to be exact and that might be because of an outlier that presents a huge difference with the rest. Possibly a small number of films have comparatively huge number of votes compared to the rest of the films.
+As for the rating variable we do not observe any irregularities which is also confirmed by its density plotted in Figure \ref{fig:rating}.
 
 ```{r summary}
 my_skim <- skim_with(base = sfl(n = length))
@@ -83,10 +82,9 @@ ggplot(film, aes(x=rating)) +
    scale_x_continuous(name="Rating", limits=c(0, 10),n.breaks = 10)+
    theme_light()
 ```
+## Explore the explainatory variables in order
 
-Given the barplot in Figure\ref{fig:genre} we notice that the majority of films are within one of the 3 most dominant categories 
-Action, Comedy and Drama. On the opposite Animation Documentary and Short films have relatively lower frequencies. 
-Finally the population of Romance films is very small compared to the rest films in our list. Only `r nrow(film[film$genre=="Romance",]) ` films are Romantic among the total of `r nrow(film) ` films.
+Firstly we explore the genre property.
 
 ```{r genre , out.width='58%', fig.align="center",fig.cap = "\\label{fig:genre} Frequency of each genre.", fig.pos = 'H'}
   
@@ -100,8 +98,7 @@ ggplot(film , aes(x=genre)) +
    labs(x="Genre" , y ="Frequency")+
    theme_light()
 ```
-
-
+Given the barplot in Figure\ref{fig:genre} we notice that the majority of films are within one of the 3 most dominant categories - Action, Comedy and Drama. On the opposite Animation Documentary and Short films have relatively lower frequencies. Finally the population of Romance films is very small compared to the rest films in our list. Only `r nrow(film[film$genre=="Romance",]) ` films are Romantic among the total of `r nrow(film) ` films.
 
 
 ``` {r, out.width='75%', fig.align="center",fig.cap = "\\label{fig:genredist} Distribution of genre.", fig.pos = 'H'}
@@ -131,10 +128,13 @@ grid.arrange(p1,p2,nrow=2)
   
 
 ```
-Figure \ref{fig:genredist} displays two plots. The first barplot shows that Action,Romance and Drama films 
-have higher probabilities getting rate below 7 compared to the other genres , while Documentary and Short types are more likely to get rate higher that 7. Moving on to the next density plot of the rate for each genre we notice that some genres have very similar lines. In particular we see that documentary and short films have very similar distribution of rate. The same applies for animation and comedy. As for the remaining genres, romance ,action and drama we do see some more noticeble differences in their lines but the overall shape and characteristics are very similar. These observations might lead to regroup the genres to a new categorical variable of 3 levels instead of 7. 
 
-Next we explore the budget property. Given the boxplot in Figure\ref{fig:budget} although we notice that the box of rate over 7 is slightly higher than the box of rate below 7 however there is a substantial overlap between the two.  
+Figure \ref{fig:genredist} displays two plots. The first barplot shows that Action,Romance and Drama films 
+have higher probabilities getting rate below 7 compared to the other genres , while Documentary and Short types are more likely to get rate higher that 7. 
+Moving on to the next density plot of the rate for each genre we notice that some genres have very similar lines. In particular we see that documentary and short films have very similar distribution of rate. The same applies for animation and comedy. As for the remaining genres, romance ,action and drama we do see some more noticeable differences in their lines but the overall shape and characteristics are very similar. These observations might lead to regroup the genres to a new categorical variable of 3 levels instead of 7. 
+
+
+Next we explore the budget property.   
  
 ```{r budget, out.width='58%', fig.align="center",fig.cap = "\\label{fig:budget} Budget and Rate.", fig.pos = 'H'}
 
@@ -150,11 +150,13 @@ ggplot( film , aes( x= Rate , y= budget,fill=Rate )) +
 
 ```
 
-```{r length ,  out.width='58%', fig.align="center",fig.cap = "\\label{fig:length} Rating based on length of the film.", fig.pos = 'H'}
+Given the boxplot in Figure\ref{fig:budget} although we notice that the box of rate over 7 is slightly higher than the box of rate below 7 however there is a substantial overlap between the two.
 
+Next we explore the length property.
+
+```{r length ,  out.width='58%', fig.align="center",fig.cap = "\\label{fig:length} Rating based on length of the film.", fig.pos = 'H'}
 # Length # 
 #==========# 
-
 film %>% 
   summarize( Min = min(length,na.rm=T),
              Q1 = quantile(length, .25,na.rm=T),
@@ -187,8 +189,11 @@ ggplot(film , aes(x= Rate , y= length, fill = Rate)) +
    theme(legend.position = "none")
 
 ```
+
 Figure \ref{fig:length} shows that the length feature has many outliers. That is explained by the large number of points graphed outside the box. Those points represent films that have duration longer than 100 minutes which is our $3^{rd}$ quartile. We have `r nrow(na.omit(film[  film$length >100+1.5*IQR(film$length,na.rm=T) & film$Rate=="0",] ))` outliers.
 Despite the outliers we might assume that length in fact has an effect on the rate since for each scale of rate the range of length is significantly different.
+
+Next we explore the year property.
 
 ```{r year ,  out.width='58%', fig.align="center",fig.cap = "\\label{fig:year} Rating based on Year Of Release of the film", fig.pos = 'H'} 
 # Year # 
@@ -208,9 +213,11 @@ y2 <- ggplot( film, aes(x = Rate , y = year )) +
 grid.arrange(y1, y2 , nrow=2)
 
 ```
+
 From the second plot in Figure\ref{fig:year}, we have the rate against the year(year of release), although it seems that most recent films get rated by more people, however the difference between giving a rate over 7 and lower than 7 for different years of release did not change dramatically.
 That is also obvious in the next boxplot, where both boxes have nearly the same range.
 
+Next we explore the votes property.
 
 ```{r votes,  out.width='58%', fig.align="center",fig.cap = "\\label{fig:votes} Rating based on Number of positive votes", fig.pos = 'H'}
 
@@ -233,10 +240,13 @@ v2 <- ggplot(film , aes(y= log(votes) , x= Rate , fill=Rate )) +
 
 grid.arrange(v1 , v2 , nrow=1)
 ```
+
 Taking into account the number of positive votes again does not help identifying if a film is more probably getting a rate lower than 7 or higher than 7 . 
 
-We might now check if there is any potential structure among our explanatory variables. 
-First we check if genres and duration have any hidden structure. 
+## Explore the relationship between explanatory variables
+
+We might now check if there is any potential structure among these explanatory variables. 
+Because we have identified that genre and length are the most important factors that influence the rating to be over 7, so first we check if genres and duration have any hidden structure. 
 
 ```{r corr ,  out.width='58%', fig.align="center",fig.cap = "\\label{fig:votes} Genre and Length", fig.pos = 'H' }
 
@@ -260,10 +270,9 @@ ggcorr(corr,
 
 
 ``` 
+
 We see that in general films' duration are roughly in same range except Documentary which has a wider range and also short and animation are genres with shorter duration. 
 In summary we do not observe any correlation between any of our continuous explanatory variables as all have their absolute value of pairwise correlation coefficient lower than 0.4. 
-
-
 
 
 # Formal Data Analysis {#sec:FDA}
@@ -274,10 +283,12 @@ As we noticed from our exploratory analysis some genres can be grouped together 
 \item Comedy and Animation as type B
 \item Romance, Drama and Action as type C
 \end {itemize}
-Recall we also noticed that length of the film might be a significant property that can determine the rating scale we proceed and remove observations that have missing values for length.
+
+Recall we also noticed that length of the film might be a significant property that can determine the rating scale we proceed and remove observations that have missing values for length.The length and votes variables do not follow the bell curve, so we log transform this data to make it as “normal” as possible so that the statistical analysis results from it could become more valid.
+
 The model we are going to fit to our data is the following.
 
-$$ \log(\frac{p}{1-p}) = \beta_0 + \beta_1 \mathbb{I}_{A}+\beta_2 \mathbb{I}_{B} + \beta_3 \mathbb{I}_{C}   + \beta_4\cdot Length_i+\epsilon_i, ~~~~ \epsilon_i \sim N(0, \sigma^2)$$
+$$ \log(\frac{p}{1-p}) = \beta_0 + \beta_1 \mathbb{I}_{A}+\beta_2 \mathbb{I}_{B} + \beta_3 \mathbb{I}_{C}   + \beta_4\cdot log(Length_i)+\epsilon_i, ~~~~ \epsilon_i \sim N(0, \sigma^2)$$
 
 where 
 \begin{itemize}
@@ -305,15 +316,14 @@ film2$type <- as.factor(film2$type)
 # Remove missing values from length 
 film2 <- na.omit(film2)
 
-# We will apply model with genre , length and budget as we assumed those are 
+# We will apply model with genre, length as we assumed those are 
 # the most significant explanatory variables 
- model <- glm(Rate ~ type + log(length)   , data = film2 , 
+ model <- glm(Rate ~ type + log(length), data = film2 , 
                family = binomial(link = "logit"))
 
 ```
 
-Now to assess model fit we compare it to other models. First we fit the full model which has all features as explanatory variables. We check the significance of coefficients in the output and remove any non-significance variables. We then fit a reduced model with only the significance varaibles and we compare it to our model. 
-
+Now to assess model fit we compare it to other models. First we fit the full model which has all features as explanatory variables. We check the significance of coefficients in the output and remove any non-significance variables. We then fit a reduced model with only the significance variables and we compare it to our model. 
 
 ```{r modelfull, out.width='58%', fig.align="center",fig.cap = "\\label{fig:fullmodelCI} 95\\% CI for Odds ratio", fig.pos = 'H' } 
 
@@ -326,9 +336,6 @@ full_model<- glm ( Rate ~ year + type + length + log(votes) + budget ,
 
 # p1 <- plot_model(model_full , show.values = TRUE , show.p = FALSE ) + theme_light()
 plot_model(full_model , show.values = TRUE , show.p = FALSE) + theme_light()
-
-
-
 ```
 
 The odds ratio is estimated as follows 
@@ -336,6 +343,7 @@ $$\frac{\hat p}{1-\hat p} = \exp(x^T_i\cdot\hat{\beta})$$
 $$= \exp( ~~\hat\beta_0 + \hat\beta_1 \mathbb{I}_{A}+\hat\beta_2 \mathbb{I}_{B} + \hat\beta_3 \mathbb{I}_{C}  + \hat\beta_4\cdot Length_i~~ )$$
 
 Given the output of the full model and plotting the estimates as shown in Figure \ref{fig:fullmodelCI} shows that the coefficient for year has an estimate of `r exp(coefficients(full_model)["year"])` with 95\% confidence interval `r exp(confint(full_model)["year",])`, which contains 1 and that is evidence of lack of significance as a predictor for the odds ratio of getting rate over 7, thus we drop it from the model.
+
 Next we apply a model with year removed. Using the deviance difference we compare it with our model. 
 
 ```{r model2 ,}
@@ -350,10 +358,10 @@ anova(model,model2) %>%
 dev_diff <- anova(model,model2)[2,"Deviance"]
 
 ```
+
 Table \ref{tab:Dev} gives the difference in the deviance between the two models. We use Chi-squared asymptotic approximation to conduct a hypothesis test. 
 Now ${\chi}^2(1;0.95)=$ `r round(qchisq(df=1 , p=0.95),digits=3)` and compared to the difference of deviance,
 `r round(qchisq(df=1 , p=0.95),digits=3)` \textless `r round(dev_diff,digits=3)`, this indicates that there is no significant evidence to reject the null hypothesis, which states that our model is a better fit than model2.
-
 
 ## Interpretation of model's estimates 
 
@@ -371,14 +379,10 @@ grid.arrange(p1,p2,nrow=1)
 # Estimates 
 coeffs <- model %>% 
    coef()
-   
-
-
 ```
+
 Given  the estimates by fitting our model we see that all estimates are negative with the magnitude of type C larger than type B suggesting that 2 films of type B have worse chance of getting rate higher than 7 and type C films have even worse chance when both compared to type A. In particular a film of type B will have log-odds lower than type A films by `r round(coeffs["typeB"],2)` while type C films will have even lower log-odds by `r round(coeffs["typeC"],2)`.
 Moreover the log(length) coefficient also suggests that for 2 films that differ in one minute in length, the longer film's odds ratio will be `r round(coeffs["log(length)"],3)` times lower than the shorter film.
-
-
 
 We can also get estimates of the odds ratio as follows 
 $$\frac{\hat p}{1-\hat p} = \exp(x^T_i\cdot\hat{\beta})$$ 
