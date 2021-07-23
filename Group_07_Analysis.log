@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.15)  17 JUL 2021 09:26
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.20)  23 JUL 2021 08:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -615,8 +615,23 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen198
 \c@nlinenum=\count320
 \TeXr@lab=\toks32
+) (./Group_07_Analysis.aux
+
+LaTeX Warning: Label `tab:summary' multiply defined.
+
+
+LaTeX Warning: Label `fig:budget' multiply defined.
+
+
+LaTeX Warning: Label `fig:votes' multiply defined.
+
+
+LaTeX Warning: Label `fig:votes' multiply defined.
+
+
+LaTeX Warning: Label `fig:votes' multiply defined.
+
 )
-No file Group_07_Analysis.aux.
 \openout1 = `Group_07_Analysis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
@@ -924,11 +939,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 85.
 LaTeX Info: Redefining \pageref on input line 85.
 LaTeX Info: Redefining \nameref on input line 85.
+(./Group_07_Analysis.out) (./Group_07_Analysis.out)
 \@outlinefile=\write3
 \openout3 = `Group_07_Analysis.out'.
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -989,96 +1002,74 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 7.99915pt on input line 87.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.99936pt on input line 87.
-File: Group_07_Analysis_files/figure-latex/data-1.pdf Graphic file (type pdf)
-<use Group_07_Analysis_files/figure-latex/data-1.pdf>
-File: Group_07_Analysis_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (
-type pdf)
-<use Group_07_Analysis_files/figure-latex/unnamed-chunk-1-1.pdf>
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 103.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 103.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.00092pt on input line 103.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.00064pt on input line 103.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.00046pt on input line 103.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.99893pt on input line 103.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.99925pt on input line 103.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 103.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+File: Group_07_Analysis_files/figure-latex/rating -1.pdf Graphic file (type pdf
+)
+<use Group_07_Analysis_files/figure-latex/rating -1.pdf>
 [1
 
 ]
-File: Group_07_Analysis_files/figure-latex/unnamed-chunk-1-2.pdf Graphic file (
+File: Group_07_Analysis_files/figure-latex/genre -1.pdf Graphic file (type pdf)
+
+<use Group_07_Analysis_files/figure-latex/genre -1.pdf>
+File: Group_07_Analysis_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (
 type pdf)
-<use Group_07_Analysis_files/figure-latex/unnamed-chunk-1-2.pdf>
+<use Group_07_Analysis_files/figure-latex/unnamed-chunk-1-1.pdf>
 [2]
-File: Group_07_Analysis_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (
-type pdf)
-<use Group_07_Analysis_files/figure-latex/unnamed-chunk-2-1.pdf>
+File: Group_07_Analysis_files/figure-latex/budget-1.pdf Graphic file (type pdf)
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--125
-[][]
- []
-
+<use Group_07_Analysis_files/figure-latex/budget-1.pdf>
 [3]
-File: Group_07_Analysis_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (
-type pdf)
-<use Group_07_Analysis_files/figure-latex/unnamed-chunk-3-1.pdf>
+File: Group_07_Analysis_files/figure-latex/length -1.pdf Graphic file (type pdf
+)
+<use Group_07_Analysis_files/figure-latex/length -1.pdf>
+File: Group_07_Analysis_files/figure-latex/year -1.pdf Graphic file (type pdf)
+<use Group_07_Analysis_files/figure-latex/year -1.pdf>
+File: Group_07_Analysis_files/figure-latex/votes-1.pdf Graphic file (type pdf)
+<use Group_07_Analysis_files/figure-latex/votes-1.pdf>
 [4]
-File: Group_07_Analysis_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (
-type pdf)
-<use Group_07_Analysis_files/figure-latex/unnamed-chunk-4-1.pdf>
-[5]
-File: Group_07_Analysis_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (
-type pdf)
-<use Group_07_Analysis_files/figure-latex/unnamed-chunk-5-1.pdf>
-File: Group_07_Analysis_files/figure-latex/unnamed-chunk-5-2.pdf Graphic file (
-type pdf)
-<use Group_07_Analysis_files/figure-latex/unnamed-chunk-5-2.pdf>
-File: Group_07_Analysis_files/figure-latex/unnamed-chunk-5-3.pdf Graphic file (
-type pdf)
-<use Group_07_Analysis_files/figure-latex/unnamed-chunk-5-3.pdf>
+File: Group_07_Analysis_files/figure-latex/corr -1.pdf Graphic file (type pdf)
+<use Group_07_Analysis_files/figure-latex/corr -1.pdf>
+File: Group_07_Analysis_files/figure-latex/corr -2.pdf Graphic file (type pdf)
+<use Group_07_Analysis_files/figure-latex/corr -2.pdf>
+[5] [6]
+File: Group_07_Analysis_files/figure-latex/modelfull-1.pdf Graphic file (type p
+df)
+<use Group_07_Analysis_files/figure-latex/modelfull-1.pdf>
+File: Group_07_Analysis_files/figure-latex/pred-1.pdf Graphic file (type pdf)
+<use Group_07_Analysis_files/figure-latex/pred-1.pdf>
+[7] [8] (./Group_07_Analysis.aux)
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--152
-[][]
- []
+LaTeX Warning: There were multiply-defined labels.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 149--152
-[]
- []
-
-[6] [7] [8]
-File: Group_07_Analysis_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (
-type pdf)
-<use Group_07_Analysis_files/figure-latex/unnamed-chunk-6-1.pdf>
-[9]
-File: Group_07_Analysis_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (
-type pdf)
-<use Group_07_Analysis_files/figure-latex/unnamed-chunk-7-1.pdf>
-[10]
-File: Group_07_Analysis_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (
-type pdf)
-<use Group_07_Analysis_files/figure-latex/unnamed-chunk-8-1.pdf>
-File: Group_07_Analysis_files/figure-latex/unnamed-chunk-8-2.pdf Graphic file (
-type pdf)
-<use Group_07_Analysis_files/figure-latex/unnamed-chunk-8-2.pdf>
-
-Underfull \hbox (badness 10000) in paragraph at lines 157--161
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 157--161
-[]
- []
-
-[11] [12] [13]
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.205 
-       
+Package rerunfilecheck Info: File `Group_07_Analysis.out' has not changed.
+(rerunfilecheck)             Checksum: 961C4015C92CAF1B12F1DBF5EE74EF35;854.
+ ) 
 Here is how much of TeX's memory you used:
- 17076 strings out of 478476
- 310363 string characters out of 5856960
- 771045 words of memory out of 5000000
- 37154 multiletter control sequences out of 15000+600000
- 405867 words of font info for 52 fonts, out of 8000000 for 9000
+ 17155 strings out of 478474
+ 311406 string characters out of 5856935
+ 784691 words of memory out of 5000000
+ 37213 multiletter control sequences out of 15000+600000
+ 407483 words of font info for 66 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 87i,7n,120p,311b,467s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 87i,9n,120p,311b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Group_07_Analysis.pdf (13 pages).
+Output written on Group_07_Analysis.pdf (8 pages).
