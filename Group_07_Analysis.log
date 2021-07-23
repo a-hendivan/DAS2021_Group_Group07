@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.20)  22 JUL 2021 22:51
-=======
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.20)  21 JUL 2021 12:41
->>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
-=======
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.20)  21 JUL 2021 12:41
->>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.20)  23 JUL 2021 08:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1011,24 +1003,27 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.99936pt on input line 87.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 98.
+(Font)              scaled to size 7.0pt on input line 103.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 98.
+(Font)              scaled to size 5.0pt on input line 103.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 98.
+(Font)              scaled to size 10.00092pt on input line 103.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 98.
+(Font)              scaled to size 7.00064pt on input line 103.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 98.
+(Font)              scaled to size 5.00046pt on input line 103.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 98.
+(Font)              scaled to size 9.99893pt on input line 103.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 98.
+(Font)              scaled to size 6.99925pt on input line 103.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 98.
-File: Group_07_Analysis_files/figure-latex/ratings -1.pdf Graphic file (type pd
-f)
-<use Group_07_Analysis_files/figure-latex/ratings -1.pdf>
+(Font)              scaled to size 4.99947pt on input line 103.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+File: Group_07_Analysis_files/figure-latex/rating -1.pdf Graphic file (type pdf
+)
+<use Group_07_Analysis_files/figure-latex/rating -1.pdf>
 [1
 
 ]
@@ -1039,9 +1034,6 @@ File: Group_07_Analysis_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (
 type pdf)
 <use Group_07_Analysis_files/figure-latex/unnamed-chunk-1-1.pdf>
 [2]
-
-LaTeX Warning: Reference `tab:cont' on page 3 undefined on input line 174.
-
 File: Group_07_Analysis_files/figure-latex/budget-1.pdf Graphic file (type pdf)
 
 <use Group_07_Analysis_files/figure-latex/budget-1.pdf>
@@ -1058,53 +1050,26 @@ File: Group_07_Analysis_files/figure-latex/corr -1.pdf Graphic file (type pdf)
 <use Group_07_Analysis_files/figure-latex/corr -1.pdf>
 File: Group_07_Analysis_files/figure-latex/corr -2.pdf Graphic file (type pdf)
 <use Group_07_Analysis_files/figure-latex/corr -2.pdf>
-[5]
+[5] [6]
 File: Group_07_Analysis_files/figure-latex/modelfull-1.pdf Graphic file (type p
 df)
 <use Group_07_Analysis_files/figure-latex/modelfull-1.pdf>
-[6]
 File: Group_07_Analysis_files/figure-latex/pred-1.pdf Graphic file (type pdf)
 <use Group_07_Analysis_files/figure-latex/pred-1.pdf>
 [7] [8] (./Group_07_Analysis.aux)
 
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `Group_07_Analysis.out' has not changed.
-<<<<<<< HEAD
-<<<<<<< HEAD
-(rerunfilecheck)             Checksum: EF5A7314967092D32225750196BDA9AA;956.
+(rerunfilecheck)             Checksum: 961C4015C92CAF1B12F1DBF5EE74EF35;854.
  ) 
 Here is how much of TeX's memory you used:
- 17152 strings out of 478474
- 311368 string characters out of 5856935
- 783730 words of memory out of 5000000
- 37212 multiletter control sequences out of 15000+600000
- 407475 words of font info for 65 fonts, out of 8000000 for 9000
-=======
-(rerunfilecheck)             Checksum: 661A599E9EC1D59F0E038EAF3CC5AB9F;942.
- ) 
-Here is how much of TeX's memory you used:
-=======
-(rerunfilecheck)             Checksum: 661A599E9EC1D59F0E038EAF3CC5AB9F;942.
- ) 
-Here is how much of TeX's memory you used:
->>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
- 17143 strings out of 478474
- 310900 string characters out of 5856935
- 783415 words of memory out of 5000000
- 37202 multiletter control sequences out of 15000+600000
+ 17155 strings out of 478474
+ 311406 string characters out of 5856935
+ 784691 words of memory out of 5000000
+ 37213 multiletter control sequences out of 15000+600000
  407483 words of font info for 66 fonts, out of 8000000 for 9000
-<<<<<<< HEAD
->>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
-=======
->>>>>>> eb5bbc0cee338f2810a7be5cfd68ffc829017061
  14 hyphenation exceptions out of 8191
- 87i,9n,120p,311b,350s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 87i,9n,120p,311b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on Group_07_Analysis.pdf (8 pages).
