@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.20)  23 JUL 2021 08:19
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.7.25)  25 JUL 2021 09:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1003,21 +1003,21 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.99936pt on input line 87.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 103.
+(Font)              scaled to size 7.0pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 103.
+(Font)              scaled to size 5.0pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 103.
+(Font)              scaled to size 10.00092pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 103.
+(Font)              scaled to size 7.00064pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 103.
+(Font)              scaled to size 5.00046pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 103.
+(Font)              scaled to size 9.99893pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 103.
+(Font)              scaled to size 6.99925pt on input line 104.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 103.
+(Font)              scaled to size 4.99947pt on input line 104.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1056,7 +1056,7 @@ df)
 <use Group_07_Analysis_files/figure-latex/modelfull-1.pdf>
 File: Group_07_Analysis_files/figure-latex/pred-1.pdf Graphic file (type pdf)
 <use Group_07_Analysis_files/figure-latex/pred-1.pdf>
-[7] [8] (./Group_07_Analysis.aux)
+[7] [8] [9] (./Group_07_Analysis.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1064,12 +1064,12 @@ Package rerunfilecheck Info: File `Group_07_Analysis.out' has not changed.
 (rerunfilecheck)             Checksum: 961C4015C92CAF1B12F1DBF5EE74EF35;854.
  ) 
 Here is how much of TeX's memory you used:
- 17155 strings out of 478474
- 311406 string characters out of 5856935
- 784691 words of memory out of 5000000
- 37213 multiletter control sequences out of 15000+600000
- 407483 words of font info for 66 fonts, out of 8000000 for 9000
+ 17153 strings out of 478475
+ 311370 string characters out of 5856947
+ 785751 words of memory out of 5000000
+ 37212 multiletter control sequences out of 15000+600000
+ 407475 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 87i,9n,120p,311b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 87i,9n,120p,311b,354s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Group_07_Analysis.pdf (8 pages).
+Output written on Group_07_Analysis.pdf (9 pages).
