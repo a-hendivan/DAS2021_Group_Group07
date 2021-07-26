@@ -276,7 +276,7 @@ Recall we also noticed that length of the film might be a significant property t
 Since the outcome variable,Rate, is binary a proper model would be a logistic model.
 The model we are going to fit to our data is the following.
 
-$$ \log(\frac{p}{1-p}) = \beta_0 + \beta_1 \mathbb{I}_{A}+\beta_2 \mathbb{I}_{B} + \beta_3 \mathbb{I}_{C}   + \beta_4\cdot Length_i+\epsilon_i, ~~~~ \epsilon_i \sim N(0, \sigma^2)$$
+$$ \log(\frac{p}{1-p}) = \beta_0 + \beta_1 \mathbb{I}_{A}+\beta_2 \mathbb{I}_{B} + \beta_3 \mathbb{I}_{C}   + \beta_4\cdot Length_i$$
 
 where 
 \begin{itemize}
